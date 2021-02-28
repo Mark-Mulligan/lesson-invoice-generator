@@ -1,32 +1,34 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
 class App extends React.Component {
-  state = { appData: [] }
+  state = { appData: [] };
 
   getApiData = async () => {
-    const { data } = await axios.get('/api/test');
+    const { data } = await axios.get("/api/test");
     this.setState({ appData: data.testData });
-  }
+  };
 
   renderData = (data) => {
     return data.map((item, index) => {
-      return <p key={index}>{item}</p>
+      return <p key={index}>{item}</p>;
     });
-  }
+  };
 
   componentDidMount() {
     this.getApiData();
   }
 
   render() {
-    console.log(this.state.appData)
+    console.log(this.state.appData);
     return (
       <div>
-      <h1>App Data</h1>
-      {this.state.appData.length > 0 ? this.renderData(this.state.appData) : null}
-    </div>
-    )
+        <h1>App Data</h1>
+        {this.state.appData.length > 0
+          ? this.renderData(this.state.appData)
+          : null}
+      </div>
+    );
   }
 }
 
