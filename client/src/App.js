@@ -1,35 +1,42 @@
 import React from "react";
-import axios from "axios";
+import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
+import MyDocument from "./components/MyDocument";
+import "./App.css";
 
 class App extends React.Component {
-  state = { appData: [] };
-
-  getApiData = async () => {
-    const { data } = await axios.get("/api/test");
-    this.setState({ appData: data.testData });
+  state = {
+    lessonDates: ["3-2-3021", "3-9-2021", "3-16-2021", "3-23-2021"],
+    lessonRates: [22, 22, 22, 22],
+    total: 84,
   };
-
-  renderData = (data) => {
-    return data.map((item, index) => {
-      return <p key={index}>{item}</p>;
-    });
-  };
-
-  componentDidMount() {
-    this.getApiData();
-  }
 
   render() {
-    console.log(this.state.appData);
     return (
-      <div>
-        <h1>App Data</h1>
-        {this.state.appData.length > 0
-          ? this.renderData(this.state.appData)
-          : null}
+      <div className="mt-5 container">
+        <PDFViewer className="container-fluid pdf-viewer">
+          <MyDocument data={this.state} />
+        </PDFViewer>
       </div>
     );
   }
 }
+
+/* const App = () => {
+  const [lessonAmount, setLessonAmout] = useState(21);
+
+  return (
+    <div className="mt-5 container">
+        <PDFViewer className="container-fluid pdf-viewer">
+          <MyDocument data={lessonAmount}/>
+        </PDFViewer>
+      </div>
+  )
+} */
+
+/* <PDFDownloadLink document={<MyDocument />} fileName="test.pdf">
+          {({ blob, url, loading, error }) =>
+            loading ? "Loading document..." : "Download now!"
+          }
+        </PDFDownloadLink> */
 
 export default App;
