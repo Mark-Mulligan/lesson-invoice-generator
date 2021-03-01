@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 const MyDocument = (props) => {
-  console.log(props.data);
   return (
     <Document>
     <Page size="A4" style={styles.page}>
@@ -63,15 +62,15 @@ const MyDocument = (props) => {
         <View style={styles.row}>
           <View style={styles.col}>
             <Text>Private Lessons (Dates)</Text>
-            {props.data.lessonDates.map(date => {
-              return <Text style={styles.tableCell} key={date}>{date}</Text>
+            {props.data.lessons.map(lesson => {
+              return <Text style={styles.tableCell} key={lesson.date}>{lesson.date}</Text>
             })}
             <Text style={styles.tableCellNoBorder}>Total</Text>
           </View>
           <View style={styles.col}>
             <Text>Amount</Text>
-            {props.data.lessonRates.map((amount, index) => {
-              return <Text style={styles.tableCell} key={index}>${amount}</Text>
+            {props.data.lessons.map((lesson, index) => {
+              return <Text style={styles.tableCell} key={index}>${lesson.cost}</Text>
             })}
             <Text style={styles.tableCell}>${props.data.total}</Text>
           </View>
