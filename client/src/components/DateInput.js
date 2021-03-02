@@ -1,14 +1,14 @@
 import "date-fns";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
+import './DateInput.css';
 
 const DateInput = (props) => {
-  const [selectedDate, setSelectedDate] = React.useState(
+  const [selectedDate, setSelectedDate] = useState(
     new Date()
   );
 
@@ -26,7 +26,7 @@ const DateInput = (props) => {
         format="MM/dd/yyyy"
         margin="normal"
         id={props.id}
-        label="Date picker inline"
+        label="Lesson Date"
         value={selectedDate}
         onChange={handleDateChange}
         KeyboardButtonProps={{
