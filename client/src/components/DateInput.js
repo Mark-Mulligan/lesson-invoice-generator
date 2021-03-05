@@ -8,12 +8,12 @@ import {
 import './DateInput.css';
 
 const DateInput = (props) => {
-  const [selectedDate, setSelectedDate] = useState(
+  /* const [selectedDate, setSelectedDate] = useState(
     new Date()
-  );
+  ); */
 
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    //setSelectedDate(date);
     props.onDateChange(date.toLocaleDateString(), props.id);
     console.log(props);
   };
@@ -27,7 +27,7 @@ const DateInput = (props) => {
         margin="normal"
         id={props.id}
         label="Lesson Date"
-        value={selectedDate}
+        value={props.value}
         onChange={handleDateChange}
         KeyboardButtonProps={{
           "aria-label": "change date",
