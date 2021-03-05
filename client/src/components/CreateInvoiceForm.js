@@ -19,6 +19,14 @@ const CreateInvoiceForm = (props) => {
           />
         </div>
         <div className="col">
+        <TextField
+            id="yourEmailInput"
+            label="Your Email"
+            value={props.yourEmail}
+            onChange={(e) => props.setYourEmail(e.target.value)}
+          />
+        </div>
+        <div className="col">
           <MonthSelect months={props.months} setMonths={props.setMonths}/>
         </div>
         <div className="col">

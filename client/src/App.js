@@ -6,11 +6,12 @@ import "./App.css";
 import CreateInvoiceForm from "./components/CreateInvoiceForm";
 
 const App = () => {
-  const [pdfData, setPdfData] = useState({lessons: [], total: 0 });
+  const [yourName, setYourName] = useState("Jeff Carmona");
+  const [yourEmail, setYourEmail] = useState("");
   const [months, setMonths] = useState([]);
   const [lessonNum, setLessonNum] = useState(4);
   const [studentName, setStudentName] = useState("");
-  const [yourName, setYourName] = useState("");
+ 
   const [parentName, setParentName] = useState("");
   const [parentEmail, setParentEmail] = useState("");
   const [lessons, setLessons] = useState([
@@ -20,10 +21,28 @@ const App = () => {
     { date: new Date().toLocaleDateString(), cost: 21 },
   ]);
   const [total, setTotal] = useState(84);
+  const [pdfData, setPdfData] = useState({
+    lessons: lessons,
+    total: total,
+    lessonNum: lessonNum,
+    studentName: studentName,
+    yourName: yourName,
+    parentName: parentName,
+    parentEmail: parentEmail
+  });
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    setPdfData({ lessons, total });
+    setPdfData({
+      ...pdfData,
+      lessons,
+      total,
+      lessonNum,
+      studentName,
+      yourName,
+      parentName,
+      parentEmail
+    });
   };
 
   const onDateChange = (date, inputId) => {
@@ -57,14 +76,14 @@ const App = () => {
     setTotal(sum);
   }, [lessons]);
 
-  console.log(pdfData == true);
-
   return (
     <div className="pt-5">
       <CreateInvoiceForm
         onFormSubmit={onFormSubmit}
         onDateChange={onDateChange}
         onCostChange={onCostChange}
+        yourEmail={yourEmail}
+        setYourEmail={setYourEmail}
         months={months}
         setMonths={setMonths}
         lessonNum={lessonNum}
@@ -92,13 +111,6 @@ const App = () => {
     </div>
   );
 };
-
-/* 
-<PDFViewer className="container-fluid pdf-viewer">
-            <MyDocument data={{}} title="test" />
-          </PDFViewer>
-
-*/
 
 /* <PDFDownloadLink document={<MyDocument />} fileName="test.pdf">
           {({ blob, url, loading, error }) =>

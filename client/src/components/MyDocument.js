@@ -34,14 +34,12 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 const MyDocument = (props) => {
-    console.log(props);
-
     return (
       <Document>
             <Page size="A4" style={styles.page}>
               <View style={styles.header}>
                 <Text>Invoice</Text>
-                <Text>Jeff Carmona</Text>
+                <Text>{props.data.yourName}</Text>
                 <Text>CarmonaJeff0@gmail.com</Text>
                 <Text>(210)710-4576</Text>
               </View>
@@ -50,12 +48,12 @@ const MyDocument = (props) => {
                 <View style={styles.row}>
                   <View style={styles.col}>
                     <Text>Bill To:</Text>
-                    <Text>Susan Hao</Text>
-                    <Text>sij888@yahoo.com</Text>
+                    <Text>{props.data.parentName}</Text>
+                    <Text>{props.data.parentEmail}</Text>
                   </View>
                   <View style={styles.col}>
                     <Text>For</Text>
-                    <Text>Allison Jin's</Text>
+                    <Text>{props.data.studentName}'s</Text>
                     <Text>August Private Lessons</Text>
                   </View>
                 </View>
@@ -64,9 +62,9 @@ const MyDocument = (props) => {
                 <View style={styles.row}>
                   <View style={styles.col}>
                     <Text>Private Lessons (Dates)</Text>
-                    {props.data.lessons.map((lesson) => {
+                    {props.data.lessons.map((lesson, index) => {
                       return (
-                        <Text style={styles.tableCell} key={lesson.date}>
+                        <Text style={styles.tableCell} key={`lesson-${index}`}>
                           {lesson.date}
                         </Text>
                       );
@@ -77,7 +75,7 @@ const MyDocument = (props) => {
                     <Text>Amount</Text>
                     {props.data.lessons.map((lesson, index) => {
                       return (
-                        <Text style={styles.tableCell} key={index}>
+                        <Text style={styles.tableCell} key={`amount-${index}`}>
                           ${lesson.cost}
                         </Text>
                       );
