@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { PDFViewer, PDFDownloadLink } from "@react-pdf/renderer";
 import "date-fns";
-import TextField from "@material-ui/core/TextField";
 import MyDocument from "./components/MyDocument";
-import DateInput from "./components/DateInput";
 import "./App.css";
 import CreateInvoiceForm from "./components/CreateInvoiceForm";
-import { set } from "date-fns";
 
 const App = () => {
+  const [pdfData, setPdfData] = useState({lessons: [], total: 0 });
+  const [months, setMonths] = useState([]);
   const [lessonNum, setLessonNum] = useState(4);
   const [studentName, setStudentName] = useState("");
   const [yourName, setYourName] = useState("");
@@ -24,14 +23,8 @@ const App = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    console.log('lesson number', lessonNum);
-    console.log('student name', studentName);
-    console.log('your name', yourName);
-    console.log('parent name', parentName);
-    console.log('parent email', parentEmail);
-    console.log('lessons', lessons);
-    console.log('total', total);
-  }
+    setPdfData({ lessons, total });
+  };
 
   const onDateChange = (date, inputId) => {
     let numRegex = /[0-9]+/;
@@ -64,12 +57,16 @@ const App = () => {
     setTotal(sum);
   }, [lessons]);
 
+  console.log(pdfData == true);
+
   return (
-    <div className="container-fluid mt-5">
-      <CreateInvoiceForm 
-        onFormSubmit={onFormSubmit} 
+    <div className="pt-5">
+      <CreateInvoiceForm
+        onFormSubmit={onFormSubmit}
         onDateChange={onDateChange}
         onCostChange={onCostChange}
+        months={months}
+        setMonths={setMonths}
         lessonNum={lessonNum}
         setLessonNum={setLessonNum}
         studentName={studentName}
@@ -84,7 +81,14 @@ const App = () => {
         setLessons={setLessons}
         total={total}
         setTotal={setTotal}
-        />
+      />
+      <div>
+        {pdfData !== {} ? (
+          <PDFViewer className="container-fluid pdf-viewer">
+            <MyDocument data={pdfData} title="test" />
+          </PDFViewer>
+        ) : null}
+      </div>
     </div>
   );
 };

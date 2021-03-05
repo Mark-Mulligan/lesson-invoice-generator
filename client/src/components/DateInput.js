@@ -1,5 +1,5 @@
 import "date-fns";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
@@ -8,14 +8,8 @@ import {
 import './DateInput.css';
 
 const DateInput = (props) => {
-  /* const [selectedDate, setSelectedDate] = useState(
-    new Date()
-  ); */
-
   const handleDateChange = (date) => {
-    //setSelectedDate(date);
     props.onDateChange(date.toLocaleDateString(), props.id);
-    console.log(props);
   };
 
   return (
