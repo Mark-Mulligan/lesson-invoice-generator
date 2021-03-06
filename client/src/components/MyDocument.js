@@ -1,5 +1,6 @@
 import React from "react";
 import { Document, Page, Text, View, StyleSheet } from "@react-pdf/renderer";
+import { formatMonthsArr } from "../util";
 
 // Create styles
 const styles = StyleSheet.create({
@@ -40,8 +41,8 @@ const MyDocument = (props) => {
               <View style={styles.header}>
                 <Text>Invoice</Text>
                 <Text>{props.data.yourName}</Text>
-                <Text>CarmonaJeff0@gmail.com</Text>
-                <Text>(210)710-4576</Text>
+                <Text>{props.data.yourEmail}</Text>
+                <Text>{props.data.yourNumber}</Text>
               </View>
   
               <View style={styles.section}>
@@ -53,8 +54,8 @@ const MyDocument = (props) => {
                   </View>
                   <View style={styles.col}>
                     <Text>For</Text>
-                    <Text>{props.data.studentName}'s</Text>
-                    <Text>August Private Lessons</Text>
+                    <Text>{props.data.studentName}'s {formatMonthsArr(props.data.months)}</Text>
+                    <Text>Private Lessons</Text>
                   </View>
                 </View>
               </View>

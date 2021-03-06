@@ -19,7 +19,7 @@ const CreateInvoiceForm = (props) => {
           />
         </div>
         <div className="col">
-        <TextField
+          <TextField
             id="yourEmailInput"
             label="Your Email"
             value={props.yourEmail}
@@ -27,18 +27,15 @@ const CreateInvoiceForm = (props) => {
           />
         </div>
         <div className="col">
-          <MonthSelect months={props.months} setMonths={props.setMonths}/>
+          <TextField
+            id="yourNumberInput"
+            label="Your Number"
+            value={props.yourNumber}
+            onChange={(e) => props.setYourNumber(e.target.value)}
+          />
         </div>
         <div className="col">
-          <TextField
-            id="numLessons"
-            label="Number of Lessons"
-            type="number"
-            value={props.lessonNum}
-            onChange={(e) => {
-              props.setLessonNum(e.target.value);
-            }}
-          />
+          <MonthSelect months={props.months} setMonths={props.setMonths} />
         </div>
       </div>
       <div className="row text-center">
@@ -64,6 +61,17 @@ const CreateInvoiceForm = (props) => {
             label="Parent Email"
             value={props.parentEmail}
             onChange={(e) => props.setParentEmail(e.target.value)}
+          />
+        </div>
+        <div className="col">
+          <TextField
+            id="numLessons"
+            label="Number of Lessons"
+            type="number"
+            value={props.lessonNum}
+            onChange={(e) => {
+              props.setLessonNum(e.target.value);
+            }}
           />
         </div>
       </div>

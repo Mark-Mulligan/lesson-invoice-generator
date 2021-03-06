@@ -7,13 +7,13 @@ import CreateInvoiceForm from "./components/CreateInvoiceForm";
 
 const App = () => {
   const [yourName, setYourName] = useState("Jeff Carmona");
-  const [yourEmail, setYourEmail] = useState("");
+  const [yourEmail, setYourEmail] = useState("jeffcarmona@gmail.com");
+  const [yourNumber, setYourNumber] = useState("817-504-5426");
   const [months, setMonths] = useState([]);
   const [lessonNum, setLessonNum] = useState(4);
-  const [studentName, setStudentName] = useState("");
- 
-  const [parentName, setParentName] = useState("");
-  const [parentEmail, setParentEmail] = useState("");
+  const [studentName, setStudentName] = useState("Hezan Doran");
+  const [parentName, setParentName] = useState("Sanjay Doran");
+  const [parentEmail, setParentEmail] = useState("dorans@gmail.com");
   const [lessons, setLessons] = useState([
     { date: new Date().toLocaleDateString(), cost: 21 },
     { date: new Date().toLocaleDateString(), cost: 21 },
@@ -27,6 +27,8 @@ const App = () => {
     lessonNum: lessonNum,
     studentName: studentName,
     yourName: yourName,
+    yourEmail: yourEmail,
+    yourNumber: yourNumber,
     parentName: parentName,
     parentEmail: parentEmail
   });
@@ -40,8 +42,11 @@ const App = () => {
       lessonNum,
       studentName,
       yourName,
+      yourEmail,
+      yourNumber,
       parentName,
-      parentEmail
+      parentEmail,
+      months
     });
   };
 
@@ -84,6 +89,8 @@ const App = () => {
         onCostChange={onCostChange}
         yourEmail={yourEmail}
         setYourEmail={setYourEmail}
+        yourNumber={yourNumber}
+        setYourNumber={setYourNumber}
         months={months}
         setMonths={setMonths}
         lessonNum={lessonNum}
